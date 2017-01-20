@@ -2,10 +2,8 @@ from setuptools import setup, find_packages
 
 requires = ['grequests']
 
-from totango import __version__
-
 setup(name='totango',
-      version=__version__,
+      version='0.4.0',
       description='Totango Python Library',
       author='Dominik Gehl',
       author_email='dominik.gehl@returnpath.com',
@@ -13,6 +11,5 @@ setup(name='totango',
       license='Apache 2.0',
       packages=find_packages(),
       install_requires=requires,
-      setup_requires=requires,
       keywords="totango",
       zip_safe=False)

@@ -1,8 +1,6 @@
 import logging
 import grequests
 
-__version__ = '0.4.0'
-
 log = logging.getLogger()
 
 class Totango(object):
