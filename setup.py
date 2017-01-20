@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-requires = ['requests']
+requires = ['grequests']
 
 from totango import __version__
 
