@@ -46,7 +46,7 @@ class Totango(object):
     def _post(self, payload):
         r = grequests.post(
             self.url, data=payload,
-            headers={'User-Agent': "python-totango/{0}".format(__version__)}
+            headers={'User-Agent': "python-totango"}
         )
         def handler(request, exception):
             log.error("Request to Totango failed: %s", exception)
