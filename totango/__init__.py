@@ -1,4 +1,4 @@
-import requests
+import grequests
 
 __version__ = '0.3.0'
 
@@ -43,12 +43,12 @@ class Totango(object):
         return payload
 
     def _post(self, payload):
-        r = requests.post(
+        r = grequests.post(
             self.url, data=payload,
             headers={'User-Agent': "python-totango/{0}".format(__version__)}
         )
-        r.raise_for_status()
-        return r
+        response = grequests.map([r])[0]
+        return response
 
     def track(self, module, action, user_id=None, user_name=None, account_id=None, account_name=None, user_opts={}, account_opts={}):
         user_id = user_id or self.user_id
