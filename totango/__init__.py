@@ -2,7 +2,7 @@ import requests
 
 __version__ = '0.3.0'
 
-class Totango:
+class Totango(object):
 
     def __init__(self, service_id, user_id=None, user_name=None, account_id=None, account_name=None):
         self.url = 'http://sdr.totango.com/pixel.gif/'
@@ -34,10 +34,10 @@ class Totango:
         if account_name is not None:
             payload['sdr_odn'] = account_name
 
-        for key, value in user_opts.iteritems():
+        for key, value in user_opts.items():
             payload["sdr_u.{0}".format(key)] = value
 
-        for key, value in account_opts.iteritems():
+        for key, value in account_opts.items():
             payload["sdr_o.{0}".format(key)] = value
 
         return payload
@@ -69,4 +69,3 @@ class Totango:
         payload = self._get_base_payload(user_id, user_name, account_id, account_name, user_opts, account_opts)
 
         return self._post(payload)
-
