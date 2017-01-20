@@ -5,9 +5,9 @@ Totango (http://www.totango.com) Python Library
 
 ##Dependencies
 REQUESTS -
-```$ pip install requests```
+```$ pip install grequests```
 or
-```$ easy_install requests```
+```$ easy_install grequests```
 
 ##Usage
 
