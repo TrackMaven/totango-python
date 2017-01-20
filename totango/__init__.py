@@ -1,6 +1,9 @@
+import logging
 import grequests
 
 __version__ = '0.3.0'
+
+log = logging.getLogger()
 
 class Totango(object):
 
@@ -47,7 +50,9 @@ class Totango(object):
             self.url, data=payload,
             headers={'User-Agent': "python-totango/{0}".format(__version__)}
         )
-        response = grequests.map([r])[0]
+        def handler(request, exception):
+            log.error("Request to Totango failed: %s", exception)
+        response = grequests.map([r], exception_handler=handler)[0]
         return response
 
     def track(self, module, action, user_id=None, user_name=None, account_id=None, account_name=None, user_opts={}, account_opts={}):
