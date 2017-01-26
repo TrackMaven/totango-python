@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
-requires = ['grequests']
+requires = ['requests-futures']
 
 setup(name='totango',
-      version='0.4.0',
+      version='0.5.0',
       description='Totango Python Library',
       author='Dominik Gehl',
       author_email='dominik.gehl@returnpath.com',

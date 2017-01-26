@@ -1,5 +1,5 @@
 import logging
-import grequests
+from requests_futures.sessions import FuturesSession
 
 log = logging.getLogger()
 
@@ -44,14 +44,17 @@ class Totango(object):
         return payload
 
     def _post(self, payload):
-        r = grequests.post(
+        def handler(sess, response):
+            if response.status_code != 200:
+                log.error("Request to Totango failed: %s", response)
+
+        session = FuturesSession(max_workers=10)
+        future = session.post(
             self.url, data=payload,
-            headers={'User-Agent': "python-totango"}
+            headers={'User-Agent': "python-totango"},
+            background_callback=handler
         )
-        def handler(request, exception):
-            log.error("Request to Totango failed: %s", exception)
-        response = grequests.map([r], exception_handler=handler)[0]
-        return response
+        return future
 
     def track(self, module, action, user_id=None, user_name=None, account_id=None, account_name=None, user_opts={}, account_opts={}):
         user_id = user_id or self.user_id
